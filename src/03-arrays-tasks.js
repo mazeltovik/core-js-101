@@ -277,8 +277,15 @@ function getSecondItems(arr) {
  *  [ 'a', 'b', 'c', null ] => [ 'a', 'b','b', 'c','c','c',  null,null,null,null ]
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
+function propagateItemsByPositionIndex(arr) {
+  const res = [];
+  arr.map((v, i) => {
+    let j = i;
+    const propArr = new Array(j += 1).fill(v);
+    res.push(...propArr);
+    return v;
+  });
+  return res;
 }
 
 
@@ -330,8 +337,14 @@ function getPositivesCount(arr) {
  *   [ 'nine','eight','nine','eight'] => [ 'eight','eight','nine','nine']
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  const digits = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+  return arr.sort((a, b) => {
+    const posA = digits.indexOf(a);
+    const posB = digits.indexOf(b);
+    if (posA < posB) return -1;
+    return 0;
+  });
 }
 
 /**
@@ -472,7 +485,15 @@ function getIdentityMatrix(n) {
  */
 function getIntervalArray(/* start, end */) {
   throw new Error('Not implemented');
+  // let temp = start;
+  // if (temp <= end) {
+  //   getIntervalArray.arr.push(temp);
+  // } else getIntervalArray.arr.push(temp);
+  // temp += 1;
+  // if (temp <= end) return getIntervalArray(start + 1, end);
+  // return getIntervalArray.arr;
 }
+// getIntervalArray.arr = [];
 
 /**
  * Returns array containing only unique values from the specified array.
@@ -577,8 +598,18 @@ function getElementByIndexes(/* arr, indexes */) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  let middle; let head; let tail;
+  if (arr.length % 2 === 0) {
+    middle = arr.length / 2;
+    head = arr.slice(0, middle);
+    tail = arr.slice(middle);
+    return [...tail, ...head];
+  }
+  middle = Math.floor(arr.length / 2);
+  head = arr.slice(0, middle);
+  tail = arr.slice(middle + 1);
+  return [...tail, arr[middle], ...head];
 }
 
 
